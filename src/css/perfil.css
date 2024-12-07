@@ -10,6 +10,7 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #6200ea;
+    background: linear-gradient(to right, #012f35, #027A8A);
     color: white;
     padding: 10px 20px;
 }
@@ -18,6 +19,20 @@ header nav a{
     color: white;
     text-decoration: none;
     margin: 0 10px;
+}
+
+header nav button {
+    background-color: #027A8A;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px ;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .perfil{
