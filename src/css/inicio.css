@@ -1,0 +1,17 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6200ea;
+    background: linear-gradient(to right, #012f35, #027A8A);
+    color: white;
+    padding: 10px 20px;
+}
+

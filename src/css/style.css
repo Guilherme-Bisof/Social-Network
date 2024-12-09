@@ -17,7 +17,8 @@ body{
     height: 100vh;
     background-image: url(../img/Background.png);
     background-repeat: no-repeat;
-    background-size: center center ;
+    background-size: cover;
+    background-position: center;
 }
 
 .container{
@@ -211,3 +212,15 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+
+@media screen and (max-width: 768px){
+    .social-icons{
+        display: none;
+    }
+}
+
+.container button, .container input{
+    padding: 12px;
+    font-size: 1rem;
+}
+
