@@ -1,0 +1,383 @@
+/* ========== BASE ========== */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+}
+
+/* ========== HEADER ========== */
+header {
+    background: linear-gradient(to right, #012f35, #027A8A);
+    background-color: #6200ea;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+/* ========== NAVEGAÇÃO ========== */
+.Nav {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-left .nav-right {
+    align-items: center;
+    display: flex;
+    flex: 1;
+}
+
+.nav-left {
+    justify-content: flex-start;
+}
+
+.nav-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.nav-right {
+    justify-content: flex-end;
+}
+
+/* ========== BARRA DE BUSCA ========== */
+.busca-perfis {
+    align-items: center;
+    display: flex;
+    max-width: 600px;
+    position: relative;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.busca-perfis input {
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    padding: 12px 20px;
+    padding-right: 50px;
+    transition: all 0.3 ease;
+    width: 100%;
+}
+
+.busca-perfis input:focus {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    outline: none;
+}
+
+.busca-perfis button {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    position: absolute;
+    right: 10px;
+    transition: all 0.3s ease;
+}
+
+.busca-perfis button:hover {
+    background: rgba(2, 122, 138, 0.1);
+    transform: scale(1.1);
+}
+
+.busca-perfis button:active {
+    transform: scale(0.95);
+}
+
+.busca-perfis input::placeholder {
+    color: #6666;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.busca-perfis button::after {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23027A8A"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"/></svg>');
+    content: '';
+    display: block;
+    height: 20px;
+    width: 20px;
+}
+
+/* ========== MENU ========== */
+.menu {
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu a {
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 16px;
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Efeitos hover dos botões */
+.menu a.btn-perfil::before,
+.menu a.btn-projetos::before,
+.menu a.btn-publicacoes::before,
+.menu a.btn-sair::before {
+    background-color: #dc3545;
+    border-radius: 5px;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+    width: 100%;
+    z-index: -1;
+}
+
+.menu a.btn-perfil:hover::before,
+.menu a.btn-projetos:hover::before,
+.menu a.btn-publicacoes:hover::before,
+.menu a.btn-sair:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.menu a.btn-perfil:hover,
+.menu a.btn-projetos:hover,
+.menu a.btn-publicacoes:hover,
+.menu a.btn-sair:hover {
+    background-color: #016c7a;
+    border-radius: 20%;
+    color: blue;
+}
+
+/* ========== PERFIL ========== */
+
+.main-container {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 280px 1fr;
+    margin: 40px auto;
+    max-width: 1280px;
+    padding: 0 20px;
+}
+
+.profile-section {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 30px;
+    position: relative;
+}
+
+.profile-section::after{
+    background: linear-gradient(90deg, #012f35 0%, #027A8A 100%);
+    bottom: 0;
+    content: '';
+    height: 4px;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.social-stats {
+    display: grid;
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.stat-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+}
+
+.stat-item h2{
+    color: #012f35;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.stat-item h3{
+    color: #027A8A;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.profile-action {
+    display: grid;
+    gap: 15px;
+}
+
+.posts-grid {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minimax(300px, 1fr));
+    margin-top: 40px;
+}
+
+.post-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 25px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+/* ========== BOTÃO AMIGOS ========== */
+
+.btn-amigo {
+    background: #027A8A !important;
+    border-radius: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px;
+    padding: 12px 25px 12px 45px !important;
+    position: relative;
+    transition: all 0.3 ease !important;
+}
+
+.btn-amigo::before {
+    background: #f6f6f6 ;
+    content: '';
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+}
+
+.btn-amigo::after {
+    border: 2px solid #027A8A;
+    border-radius: 10px;
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: all 0.3 ease;
+    width: 100%;
+}
+
+.btn-amigo:hover {
+    background: #01626f !important;
+    padding-left: 50px !important;
+}
+
+.btn-amigo:hover::after {
+    opacity: 0.2;
+    transform: scale(1.05);
+}
+
+/* ========== BOTÕES ESPECIAIS ========== */
+
+.btn-editar-foto {
+    background: linear-gradient(45deg, #027A8A, #015d69);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    padding: 12px 35px 12px 45px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.btn-editar-foto::before {
+    content: '';
+    left: 15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+.btn-editar-foto:hover {
+    box-shadow: 0 4px 15px rgba(2, 122, 138, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-editar-foto:hover::before{
+    transform: translateY(-50%) scale(1.2);
+}
+
+.btn-editar-foto:active {
+    transform: translateY(0);
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 1024px) {
+    .main-container {
+        gap: 30px;
+        grid-template-columns: 1fr;
+    }
+    .profile-section {
+        margin: 0 auto;
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-right {
+        margin-top: 10px;
+    }
+
+    .stat-item h3 {
+        font-size: 1.5rem;
+    }
+
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px){
+    .profile-section {
+        padding: 25px 15px;
+        width: 100%;
+    }
+
+    .social-stats {
+        grid-template-columns: 1fr;
+    }
+}
