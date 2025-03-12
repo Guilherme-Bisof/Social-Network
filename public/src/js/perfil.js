@@ -1,5 +1,5 @@
 document.getElementById("configuracoes").addEventListener("click", function() {
-    window.location.href = "editar-perfil.php";
+    window.location.href = "../../actions/editar-perfil.php";
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -39,7 +39,7 @@ document.getElementById('foto-perfil').addEventListener('change', function(event
 });
 
 function marcarComoLida(id){
-    fetch('marcar_notificacao.php', {
+    fetch('../actions/marcar_notificacao.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
         body: 'id' + id
@@ -48,13 +48,14 @@ function marcarComoLida(id){
     })
 }
 
-document.getElementById("btn-notificacoes").addEventListener("click", function() {
-    document.getElementById("notificacoes-dropdown").classList.toggle("show");
+document.getElementById("btn-notificacoes").addEventListener('click', function() {
+    const dropdown = document.getElementById('notificacoes-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block' ;
 });
 
 async function enviarPedidoAmizade(perfilId) {
     try {
-        const response = await fetch(`enviar_pedido.php?id=${perfilId}`);
+        const response = await fetch(`../actions/enviar_pedido.php?id=${perfilId}`);
         if (response.ok) {
             location.reload(); // Recarrega a página para atualizar status
         } else {
@@ -68,7 +69,7 @@ async function enviarPedidoAmizade(perfilId) {
 
 async function aceitarPedido(pedidoId) {
     try {
-        const response = await fetch(`aceitar_pedido.php?id=${pedidoId}`);
+        const response = await fetch(`../actions/aceitar_pedido.php?id=${pedidoId}`);
 
         if (response.ok){
             location.reload();
@@ -83,7 +84,7 @@ async function aceitarPedido(pedidoId) {
 async function recusarPedido(pedidoId, perfil_Id) {
     console.log("pedidoId:", pedidoId, "perfil_Id:", perfil_Id);
     try{
-        const response = await fetch(`recusar_pedido.php?id=${pedidoId}&perfil_id=${perfil_Id}`);
+        const response = await fetch(`../actions/recusar_pedido.php?id=${pedidoId}&perfil_id=${perfil_Id}`);
         if (response.ok){
            location.reload();
         } else {

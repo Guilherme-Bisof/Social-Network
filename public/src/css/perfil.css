@@ -46,6 +46,78 @@ header {
     justify-content: flex-end;
 }
 
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nav-link:hover {
+    background: #f0fafb;
+    color: #027A8A !important;
+}
+
+/* Ícones usando Font Awesome */
+
+.nav-link[href*="inicio.php"]::before {
+    content: "\f015"; /* Ícone de casa */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.nav-link[href*="#projetos"]::before {
+    content: "\f542";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; 
+}
+
+.nav-link[href*="index.php"] {
+    color: #e71c3c;
+}
+
+.nav-link[href*="index.php"]:hover {
+    background: #feeceb !important;
+}
+
+.nav-link[href*="index.php"]::before {
+    content: "\f2f5";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+/* Dropdown notificacoes */
+
+.notificacoes-dropdown {
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    right: 20px;
+    top: 60px;
+    min-width: 250px;
+    z-index: 1000;
+}
+
+.notificacao {
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* ========== BARRA DE BUSCA ========== */
 .busca-perfis {
     align-items: center;
@@ -297,6 +369,23 @@ header {
     transform: scale(1.05);
 }
 
+.foto-perfil-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #027A8A;
+    box-shadow: 0 4px solid rgba(0, 0, 0, 0.1);
+}
+
 /* ========== BOTÕES ESPECIAIS ========== */
 
 .btn-editar-foto {
@@ -307,9 +396,7 @@ header {
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
-    overflow: hidden;
-    padding: 12px 35px 12px 45px;
-    position: relative;
+    padding: 10px 25px;
     transition: all 0.3s ease;
 }
 
@@ -333,6 +420,119 @@ header {
 
 .btn-editar-foto:active {
     transform: translateY(0);
+}
+
+/* Ações Perfil */
+
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+/* --- Botão Seguir/Amigos --- */
+
+.btn-follow,
+.btn-friend {
+    background: #027A8A p !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 25px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-follow:hover {
+    background: #01626f !important;
+    transform: translateY(-1px);
+}
+
+.btn-friend {
+    background: #4CAF50 !important;
+    cursor: default !important;
+}
+
+/* --- Botão Mensagem --- */
+.btn-message {
+    background: #E3F2FD !important;
+    color: #027A8A !important;
+    border: 1px solid #027A8A !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-message:hover {
+    background: #BBDEFB !important;
+}
+
+/* --- Botão Editar Perfil --- */
+
+.btn-config {
+    background: transparent !important;
+    color: #027A8A !important;
+    border: 1px solid #027A8A !important;
+    border-radius: 6px !important;
+    padding: 18px 20px !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-config:hover {
+    background: rgba(2, 122, 138, 0.1);
+}
+
+/* --- Estados Amizades (Pendente,Aceitar,Recusar) --- */
+.btn-pendent {
+    background: #BDBDBD !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    cursor: default !important;
+}
+
+
+.btn-accept{
+    background: #4CAF50 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    transition: all 0.2s ease;
+}
+
+.btn-accept:hover {
+    background: #43A047 !important;
+}
+
+.btn-decline {
+    background: #ef5350 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    transition: all 0.2s ease;    
+}
+
+.btn-decline:hover {
+    background: #e53935 !important;
+}
+
+
+/* --- MicroInterações --- */
+button:not(:disabled) {
+    cursor: pointer;
+    transform: scale(1);
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.98);
 }
 
 /* ========== RESPONSIVIDADE ========== */
@@ -379,5 +579,15 @@ header {
 
     .social-stats {
         grid-template-columns: 1fr;
+    }
+
+    .profile-actions{
+        flex-direction: column;
+    }
+
+    .profile-actions button, 
+    .profile-actions a {
+        width: 100%;
+        text-align: center;
     }
 }

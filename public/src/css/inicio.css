@@ -6,49 +6,87 @@ body {
     background: #f9f9f9;
 }
 
-/* ========= HEADER ========= */
-header {
-    display: flex;
-    justify-content: space-between;  /* Garante que a logo, menu e botão de sair fiquem separados */
-    align-items: center;
-    background-color: #6200ea;
-    background: linear-gradient(to right, #012f35, #027A8A);
-    color: white;
-    padding: 10px 20px;
-}
 
 /* ========= NAVEGAÇÃO ========= */
-nav {
+
+.Nav {
     display: flex;
     justify-content: space-between;
-    align-items: center;  
-    width: 100%; 
-    gap: 20px;
-}
-
-.nav-left .nav-right {
-    flex: 1;  /* A logo vai ocupar a parte esquerda */
-    display: flex;
     align-items: center;
+    padding: 1rem 5%;
+    background: linear-gradient(to right, #012f35, #027A8A);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: white;
+    gap: 1rem;
 }
 
-.nav-left{
-    justify-content: flex-start;
+.nav-link {
+    white-space: nowrap;
+    color: #FFF!important;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.nav-center {
-    flex: 2; /* Dá mais espaço ao menu */
-    display: flex;
-    justify-content: center;  /* Centraliza o menu */
-    max-width: 600px;
+.nav-link:hover {
+    color: #027A8A !important;
+    background: #f0fafb;
 }
 
-.nav-right{
-    justify-content: flex-end;
+.nav-link::after{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #027A8A !important;
+    transition: width 0.3s ease;
 }
+
+.nav:hover::after{
+    width: 100%;
+}
+/* Ícones Font Awesome */
+
+.nav-link::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.nav-link[href*="perfil.php"]::before {
+    content: " \f007 " ; /* Ícone usuário */
+}
+
+.nav-link[href*="#projetos"]::before {
+    content: " \f542 " ; /* Ícone pasta */
+}
+
+.nav-link[href*="#publicacoes"]::before {
+    content: " \f1ea " ; /* Ícone megafone */
+}
+
+.nav-link[href*="sair.php"] {
+    color: #e71c3c;
+}
+
+.nav-link[href*+"sair.php"]:hover {
+    background: #feeceb;
+}
+
+.nav-link[href*="sair.php"]::before {
+    content: " \f2f5 " ; /* Ícone usuário */
+}
+
 
 /* ========= BARRA DE BUSCA ========= */
-.busca-perfis{
+.buscar-perfis{
     position: relative;
     display: flex;
     align-items: center;
@@ -57,7 +95,7 @@ nav {
     transition: all 0.3s ease;
 }
 
-.busca-perfis input{
+.buscar-perfis input{
     width: 100%;
     padding: 12px 20px;
     padding-right: 50px;
@@ -70,13 +108,13 @@ nav {
     transition: all 0.3 ease;
 }
 
-.busca-perfis input:focus{
+.buscar-perfis input:focus{
     outline: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     background-color: rgba(255, 255, 255, 1);
 }
 
-.busca-perfis button{
+.buscar-perfis button{
     position: absolute;
     right: 10px;
     background: transparent;
@@ -90,23 +128,23 @@ nav {
     justify-content: center;
 }
 
-.busca-perfis button:hover{
+.buscar-perfis button:hover{
     background: rgba(2, 122, 138, 0.1);
     transform: scale(1.1);
 }
 
-.busca-perfis button:active{
+.buscar-perfis button:active{
     transform: scale(0.95);
 }
 
 /* Melhoria no placeholder */
-.busca-perfis input::placeholder{
+.buscar-perfis input::placeholder{
     color: #6666;
     font-weight: 300;
     letter-spacing: 0.5px;
 }
 
-.busca-perfis button::after{
+.buscar-perfis button::after{
     content: '';
     display: block;
     width: 20px;
@@ -114,70 +152,372 @@ nav {
     background:  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23027A8A"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"/></svg>');
 }
 
+/* Publicacoes */
 
-/* ========= MENU ========= */
-.menu {
+.nova-publicacao {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 680px;
+    padding: 16px;
+    border: 1px solid #e4e6eb;
+}
+
+.publicacao-editor .usuario-info {
     display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
-.menu a {
-    text-decoration: none;
-    color: #fff;
-    padding: 8px 16px;
-    font-size: 14px;
-    position: relative;
-    transition: color 0.3s ease;
+.publicacao-editor textarea {
+    flex: 1;
+    min-height: 100px;
+    padding: 14px;
+    border: none;
+    border-radius: 20px;
+    background: #f0f2f5;
+    font-size: 15px;
+    line-height: 1.5;
+    resize: none;
+    transition: all 0.2s;
 }
 
-
-.nav-right {
-    display: flex;
-    justify-content: flex-end;  /* Garante que o botão de sair fique à direita */
+.publicacao-editor textarea:focus {
+    background: #fff;
+    box-shadow: 0 0 0 2px #027A8A;
 }
 
-/* Efeitos hover dos botões */
-.menu a.btn-sair::before, .menu a.btn-projetos::before, .menu a.btn-publicacoes::before, .menu a.btn-sair::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+.publicacao-editor textarea::placeholder {
+    color: #909090;
+    font-weight: 400;
+}
+
+/* Controle de Imagens */
+
+.imagem-container {
+    margin: 8px 0;
+    line-height: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.imagem-container:hover  .imagem-publicacao{
+    transform: scale(1.02);
+}
+
+.imagem-publicacao {
     width: 100%;
-    height: 100%;
-    background-color: #dc3545;
-    border-radius: 5px;
-    z-index: -1;
-    transform: scaleX(0);
-    transform-origin: right;
+    max-height: none;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
     transition: transform 0.3s ease;
 }
 
-.menu a.btn-perfil:hover::before, .menu a.btn-projetos:hover::before, .menu a.btn-publicacoes:hover::before, .menu a.btn-sair:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
+.imagem-publicacao:hover {
+    transform: translateY(-3px);
 }
 
-.menu a.btn-perfil:hover, .menu a.btn-projetos:hover, .menu a.btn-publicacoes:hover, .menu a.btn-sair:hover {
-    background-color: #016c7a;
-    color: blue;
-    border-radius: 20%;
+.acoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.custom-file-upload {
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-file-upload input[type="file"]{
+    display: none;
+}
+
+.custom-file-upload:hover i {
+    color: #007bff;
+}
+
+.acoes button {
+    background: #007bff ;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.acoes button:hover {
+    background: #0056b3;
+}
+
+/* Estilo para publicações*/
+#lista-publicacoes {
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.publicacao {
+    width: 50%;
+    max-width: none;
+    margin: 16px 0;
+    margin-left: 25%;
+}
+
+.publicacao:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#publicacao {
+    max-width: 680px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+#publicacoes h2 {
+    margin: 0 0 25px 0;
+    padding-left: 10px;
+}
+
+#publicacoes h2 i {
+    font-size: 1.2em;
+    color: #027A8A;
+}
+
+/* Cabeçalho da publicação */
+
+.publicacao-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.publicacao-info {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.publicacao-info h3 {
+    color: #012f35;
+    font-size: 15px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.publicacao h3 {
+    margin: 0 ;
+    color: #012f35;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.publicacao-info small {
+    color: #65676b;
+    font-size: 13px;
+}
+
+/* Conteúdo */
+
+.publicacao-conteudo {
+    padding: 15px 20px;
+}
+
+.publicacao p {
+    color: #333;
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.publicacao img {
+    width: 100%;
+    border-radius: 8px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.publicacao img:hover {
+    opacity: 0.95;
+}
+
+/* Ações */
+
+.publicacao-acoes {
+    padding: 8px 16px;
+    border-top: 1px solid #e4e6eb;
+    display: flex;
+    gap: 8px;
+}
+
+.acao-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    color: #65676b;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.acao-btn:hover {
+    background: #f0f2f5;
+}
+
+.acao-btn i {
+    font-size: 1.1em;
+}
+
+/* Nenhuma Publicação */
+#lista-publicaacoes > p {
+    text-align: center;
+    color: #909090;
+    padding: 40px 20px;
+}
+
+/* Avatar */
+
+.avatar {
+    width: 40px !important; 
+    height: 40px !important;
+    border-radius: 50% !important;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.avatar-inicial {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: #027A8A;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+
+/* Feed de Atividades */
+
+.feed-atividades {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-left: 1rem;
+    width: 300px;
+}
+
+.feed-atividades h2{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ef0bd4;
+}
+
+.lista-atividades, .amigos-online {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.atividade-item, .amigo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.atividade-item img, .amigo-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.atividade-info p, .amigo-item span {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.atividade-info small {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.amigo-acoes {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+
+.btn-ver-perfil, .btn-mensagem {
+    background: #027A8A;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-ver-perfil:hover, .btn-mensagem:hover {
+    background: #01626f;
 }
 
 /* ========= RESPONSIVIDADE ========= */
 @media (max-width: 768px) {
-    nav {
+    .Nav {
         flex-direction: column;
-        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
     }
 
-    .menu {
-        flex-direction: column;
-        gap: 10px;
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .busca-perfis {
+        width: 100%;
+        max-width: none;
     }
 
     .nav-right {
         margin-top: 10px;
     }
+
+    .imagem-container {
+        max-width: 100%;
+    }
+
+    .imagem-publicacao {
+        max-height: 400px;
+    }
+
+    .publicacao {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+@media (max-width: 480px) {
+    
 }

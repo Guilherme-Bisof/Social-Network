@@ -1,0 +1,243 @@
+/* ====== NAVEGAÇÃO ====== */
+
+header {
+    background: linear-gradient(to right, #012f35, #027A8A);
+    background-color: #6200ea;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.Nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+
+}
+
+.Nav nav{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: #fff;
+    background: transparent !important;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link:hover{
+    color: #027A8A !important;
+    background: #f0fafb !important;
+}
+
+.nav-link::after{
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #027A8A !important;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after{
+    width: 100%;
+}
+
+/* Estilo especial para o botão Sair */
+
+.nav-link[href*="index.php"] {
+    color: #e73c3c;
+}
+
+.nav-link[href*="index.php"]:hover {
+    background: #feeceb;
+}
+
+/* Icones (adicione Font Awesome ou use SVG) */
+
+.nav-link::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.nav-link[href*="inicio.php"]::before {
+    content: "\f015"; /* Ícone casa */
+}
+
+.nav-link[href*="#"]::before {
+    content: "\f542"; /*Ícone pasta */
+}
+
+.nav-link[href*="index.php"]::before{
+    content: "\f2f5"; /* Ícone sair */
+}
+
+/* Responsivo */
+
+@media (max-width: 768px) {
+    .Nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .Nav nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/*====== RESULTADOS DE BUSCAS ====== */
+
+.resultados-busca {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.resultados-busca h2{
+    color: #012f35;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.lista-perfis {
+    display: grid;
+    gap: 20px;
+}
+
+.perfil {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.perfil:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.perfil img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #027A8A;
+}
+
+.perfil div{
+    flex: 1;
+}
+
+.perfil h3{
+    color: #012f35;
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.perfil p {
+    color: #6666;
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+}
+
+.btn-ver-perfil{
+    background: #027A8A;
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-ver-perfil:hover {
+    background: #015d69;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 122, 138, 0.3);
+}
+
+.sem-resultados{
+    text-align: center;
+    padding: 40px;
+    color: #6666;
+    font-size: 1.2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Loading Animation */
+.carregando {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #027A8A;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsividade */ 
+
+@media (max-width: 760px) {
+    .perfil {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .perfil img{
+        width: 100px;
+        height: 100px;
+    }
+
+    .btn-ver-perfil {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .resultados-busca h2{
+        font-size: 1.4rem;
+    }
+
+    .perfil {
+        padding: 20px;
+    }
+}
