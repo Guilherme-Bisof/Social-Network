@@ -63,6 +63,14 @@
     $stmt_amigos->execute();
     $result_amigos = $stmt_amigos->get_result();
     $amigos = $result_amigos->fetch_all(MYSQLI_ASSOC);
+
+    // Consultar Grupos do Usuário
+    $sql_grupos = "SELECT g.* FROM grupos g JOIN grupos_membros gm ON g.id = gm.grupo_id WHERE gm.usuario_id = ? ORDER BY g.data_criacao DESC";
+    $stmt_grupos = $conexao->prepare($sql_grupos);
+    $stmt_grupos->bind_param('i', $user_id);
+    $stmt_grupos->execute();
+    $result_grupos = $stmt_grupos->get_result();
+    $grupos = $result_grupos->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
