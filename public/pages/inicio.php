@@ -57,7 +57,7 @@
 
     // Consultar Amigos
 
-    $sql_amigos = "SELECT u.id, u.nome, u.foto_perfil FROM usuarios u JOIN amizades a ON (u.id = a.usuario_1 OR u.id = a.usuario_2) WHERE (a.usuario_1 = ? OR a.usuario_2 = ?) AND a.status = 'aceito' AND u.id != ? ORDER BY u.ultimo_login DESC LIMIT 5";
+    $sql_amigos = "SELECT u.id, u.nome, u.foto_perfil, u.ultimo_login FROM usuarios u JOIN amizades a ON (u.id = a.usuario_1 OR u.id = a.usuario_2) WHERE (a.usuario_1 = ? OR a.usuario_2 = ?) AND a.status = 'aceito' AND u.id != ? ORDER BY u.ultimo_login DESC LIMIT 5";
     $stmt_amigos = $conexao->prepare($sql_amigos);
     $stmt_amigos->bind_param('iii', $user_id, $user_id, $user_id);
     $stmt_amigos->execute();
@@ -104,6 +104,7 @@
             <!-- Busca-->
              <form action="../actions/buscar.php" class="buscar-perfis" method="GET">
                 <input type="text" name="termo" placeholder="Buscar...">
+                <input type="hidden" name="tipo" placeholder="Todos">
                 <button type="submit"></button>
              </form>
 
@@ -195,7 +196,7 @@
                                  <?php endif; ?>
                             </div>
 
-                            <div class="publicaco-acoes">
+                            <div class="publicacao-acoes">
                                 <div class="acao-btn">
                                     <i class="far fa-thumbs-up"></i>
                                     <span>Curtir</span>
@@ -205,17 +206,27 @@
                                     <span>Comentar</span>
                                 </div>
                             </div>
+
+                            <?php if ($publicacao['usuario_id'] == $user_id): ?>
+                            <form action="/social-network/public/actions/excluir_publicacao.php" method="POST" class="form-excluir">
+                                <input type="hidden" name="publicacao_id" value="<?= $publicacao['id'] ?>">
+                                <input type="hidden" name="imagem" value="<?= htmlspecialchars($publicacao['imagem'])?>">
+                                <button type="submit" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir está publicação?')">
+                                    <i class="fas fa-trash"></i> Excluir
+                                </button>
+                            </form>
+                        <?php endif;?>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>Nenhuma publicação encontrada. Seja o primeiro a compartilhar algo!</p>
+                    <p class= "sem-publicacoes"><i class="fas fa-comment-slash"></i>Nada por aqui. Que tal compartilhar algo inspirador?</p>
                 <?php endif; ?>
             </div>
         </section>
 
         <!-- Feed de Atividades e amigos -->
          <aside class="feed-atividades">
-            <h2>Atividades Recentes</h2>
+            <h2 class="activity-recent">Atividades Recentes</h2>
             <div class="lista-atividades">
                 <!-- Lista de atividades -->
                 <?php if (!empty($atividades)): ?>
@@ -233,14 +244,15 @@
                 <?php endif; ?>
             </div>
 
-            <h2>Amigues Online</h2>
+            <h2>Amigos Online</h2>
             <div class="amigos-online">
                 <!-- Lista de Amigos-->
                 <?php if (!empty($amigos)): ?>
                     <?php foreach ($amigos as $amigo): ?>
                         <div class="amigo-item">
-                            <img src="<?= htmlspecialchars($amigo['foto_perfil']) ?>" alt="Foto de Perfil">
-                            <span><?= htmlspecialchars($amigo['nome']) ?></span>
+                            <img src="<?=$amigo['foto_perfil'] ?>" class="avatar-pequeno" alt="Foto de Perfil">
+                            <span><?= $amigo['nome'] ?></span>
+                            <div class="status <?= (strtotime($amigo['ultimo_login']) > time() - 300) ? 'online' : 'offline' ?>"></div>
                             <div class="amigo-acoes">
                                 <a href="perfil.php?id=<?= $amigo['id'] ?>" class="btn-ver-perfil"> Ver Perfil</a>
                                 <a href="mensagens.php?user=<?= $amigo['id']?>" class="btn-mensagem">Mensagem</a>

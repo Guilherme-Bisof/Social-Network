@@ -329,10 +329,11 @@ body {
 }
 
 .publicacao p {
-    color: #333;
-    margin: 0 0 15px 0;
-    line-height: 1.5;
-    font-size: 0.95rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 .publicacao img {
@@ -345,6 +346,13 @@ body {
 
 .publicacao img:hover {
     opacity: 0.95;
+}
+
+.sem-publicacoes {
+    text-align: center;
+    color: #666;
+    padding: 30px;
+    font-size: 1.2rem;
 }
 
 /* Ações */
@@ -413,19 +421,19 @@ body {
 
 .feed-atividades {
     background: #fff;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 122, 138, 0.1);
+    border: 1px solid #e4e6eb;
     margin-left: 1rem;
     width: 300px;
 }
 
 .feed-atividades h2{
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+    color: #012f35;
+    font-size: 1.1rem;
+    padding: ;
     color: #ef0bd4;
 }
-
 .lista-atividades, .amigos-online {
     max-height: 400px;
     overflow-y: auto;
@@ -460,6 +468,36 @@ body {
     margin-left: auto;
     display: flex;
     gap: 5px;
+}
+
+.avatar-pequeno {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-online {
+    background: #28a745;
+    animation: pulse 1.5 infinite;
+}
+
+.status-offline {
+    background: #6c757d;
+}
+
+@keyframes pulse{
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(0.95);}
 }
 
 .btn-ver-perfil, .btn-mensagem {
@@ -516,6 +554,46 @@ body {
         border-left: none;
         border-right: none;
     }
+}
+
+/* Estilos para admin */
+.badge.bg-warning {
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+.btn-info {
+    padding: 0.25rem 0.5rem;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background: #027A8A;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Botão de Excluir */
+.btn-excluir {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-excluir:hover {
+    background-color: #ff1a1a;
+}
+
+.form-excluir {
+    text-align: right;
+    margin-top: 10px;
 }
 
 @media (max-width: 480px) {
