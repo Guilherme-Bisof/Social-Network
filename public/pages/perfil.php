@@ -177,7 +177,7 @@
              </form>
             <nav>
                 <a href="inicio.php" class="nav-link">Home</a>
-                <a href="#projetos" class="nav-link">Projetos</a>
+                <a href="projects.php" class="nav-link">Projetos</a>
                 <a href="index.php" class="nav-link" >Sair</a>
                 <button class="nav-link" id="btn-notificacoes">🔔 Notificações</button>
                 <div class="notificacoes-dropdown" id="notificacoes-dropdown">

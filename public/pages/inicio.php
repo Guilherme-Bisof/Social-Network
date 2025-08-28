@@ -110,7 +110,7 @@
 
              <nav>
                 <a href="perfil.php" class="nav-link">Perfil</a>
-                <a href="#projetos" class="nav-link">Projetos</a>
+                <a href="projects.php" class="nav-link">Projetos</a>
                 <a href="#publicacoes" class="nav-link">Publicacoes</a>
                 <a href="../actions/sair.php" class="nav-link">Sair</a>
              </nav>

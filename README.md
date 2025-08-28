@@ -74,6 +74,20 @@ README.md              # Este arquivo
 - `/public/actions/atualizar_foto.php` 🖼️ - POST para atualizar foto de perfil.
 - `/public/actions/buscar.php?termo={busca}` 🔍 - GET para buscar usuários/grupos.
 
+## Estrutura das Tabelas do Banco de Dados
+
+| Tabela         | Descrição                                 | Principais Campos                                 |
+|----------------|-------------------------------------------|---------------------------------------------------|
+| `usuarios`     | Usuários cadastrados                      | id, nome, email, senha, foto, bio                 |
+| `publicacoes`  | Publicações dos usuários                  | id, usuario_id, conteudo, imagem, data            |
+| `grupos`       | Grupos criados pelos usuários             | id, nome, descricao, foto, criador_id             |
+| `grupo_membros`| Relação de usuários em grupos             | id, grupo_id, usuario_id, data_entrada            |
+| `amizades`     | Relação de amizade entre usuários         | id, usuario_id, amigo_id, status, data            |
+| `notificacoes` | Notificações para os usuários             | id, usuario_id, tipo, mensagem, lida, data        |
+| `pedidos`      | Pedidos de amizade enviados               | id, remetente_id, destinatario_id, status, data   |
+
+> **Observação:** Os nomes das tabelas e campos podem variar conforme sua implementação. Consulte o modelo real em `database/config.php` ou no arquivo de criação do banco.
+
 ## Observações
 
 - O projeto utiliza Bootstrap e Font Awesome para o frontend.
