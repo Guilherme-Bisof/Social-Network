@@ -1,46 +1,42 @@
 <?php 
-        if(isset($_POST['submit'])){
-        
-            include_once(__DIR__ . '/../database/config.php');
-        
-        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $nome = mysqli_real_escape_string($conexao, $_POST['nome'] ?? '');
-            $usuario = mysqli_real_escape_string($conexao, $_POST ['usuario'] ?? '');
-            $email = mysqli_real_escape_string($conexao, $_POST['email'] ?? '');
-            $senha = mysqli_real_escape_string($conexao, $_POST['senha'] ?? '');
-            $sexo = mysqli_real_escape_string($conexao, $_POST['Sexo'] ?? '');
-            $tipo_usuario = mysqli_real_escape_string($conexao, $_POST ['tipo_usuario'] ?? 'Aluno');
-        }
-        
-        if($nome && $usuario && $email && $senha && $sexo && $tipo_usuario){
-           
-            $checkEmail = "SELECT * FROM usuarios WHERE email = '$email'";
-            $result = mysqli_query($conexao, $checkEmail);
-            if(mysqli_num_rows($result)> 0 ){
-            echo "O email já esta registrado.";
-            }else{
-            
-            
-            //Criptografar senha
-            $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
-        
-            // Consulta SQL
-            $sql ="INSERT INTO usuarios(nome, email, senha, usuario, sexo, tipo_usuario) VALUES ('$nome', '$email', '$senhaHash', '$usuario', '$sexo', '$tipo_usuario')";
+    include_once(__DIR__ . '/../../database/config.php');
+    include_once(__DIR__ . '/../../app/controllers/AuthController.php');
     
-            // Executa e consulta e verica erros
-        
-            if(mysqli_query($conexao,$sql)){
-            echo "";
-            } else{
-                echo "Erro ao registrar usuário: ". mysqli_error($conexao);
-             }
+    $auth = new AuthController($conexao);
+
+        // Se for registro
+    if(isset($_POST['submit']) && $_POST['submit'] === "Cadastrar") {
+        $nome = $_POST['nome'];
+        $usuario = $_POST['usuario'];
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $sexo = $_POST['Sexo'];
+        $tipo_usuario = $_POST['tipo_usuario'];
+
+        $resultado = $auth->register($nome, $usuario, $email, $senha, $sexo, $tipo_usuario);
+
+        if($resultado === true) {
+            echo "Usuário registrado com sucesso!";
+        } else {
+            echo $resultado; // mensagem de erro
         }
-        } else{
-            echo "Por favor, preencha todos os campos obrigatórios";
+    }   
+
+    // Se for login
+    if(isset($_POST['submit']) && $_POST['submit'] === "Entrar") {
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+
+        $resultado = $auth->login($email, $senha);
+
+        if($resultado === true) {
+            header("Location: inicio.php");
+            exit;
+        } else {
+            echo $resultado;
         }
-    
-        }
-    ?>
+    }
+?>
 
     <!DOCTYPE html>
     <html lang="pt-br">
@@ -69,6 +65,9 @@
                     <div class="social-icons">
                         <a href="#" class="icon">
                             <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" class="icon">
+                            <i class="fa-brands fa-linkedin-in"></i>
                         </a>
                     </div>
                     <span>ou use seu email para registrar</span>
@@ -105,7 +104,7 @@
                         </select>
                     </div>
                     
-                    <button type="submit" name="submit">Cadastrar</button>
+                    <button type="submit" name="submit" value="Cadastrar">Cadastrar</button>
                 </form>
             </div>
             
@@ -115,23 +114,17 @@
                     <h1>Entrar</h1>
                     <div class="social-icons">
                         <a href="#" class="icon">
-                            <i class="fa-brands fa-google"></i>
-                        </a>
-                        <a href="#" class="icon">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
                         <a href="#" class="icon">
                             <i class="fa-brands fa-github"></i>
-                        </a>
-                        <a href="#" class="icon">
-                            <i class="fa-brands fa-facebook-f"></i>
                         </a>
                     </div>
                     <span>Ou use seu email e senha</span>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="senha" placeholder="Senha" required>
                     <a href="#">Esqueceu sua Senha?</a>
-                    <button type="submit" name="submit">Entrar</button>
+                    <button type="submit" name="submit" value="Entrar">Entrar</button>
                 </form>
             </div>
             
