@@ -84,6 +84,23 @@ body {
     content: " \f2f5 " ; /* Ícone usuário */
 }
 
+/* Logo */
+.logo-img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 22px;
+}
+
 
 /* ========= BARRA DE BUSCA ========= */
 .buscar-perfis{

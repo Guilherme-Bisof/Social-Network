@@ -99,7 +99,9 @@
 <body>
     <header>
         <section class="Nav">
-            <h1>ConnectU</h1>
+            <a href="inicio.php" class="logo">
+                <img src="../src/img/logo.png" alt="ConnectU" class="logo-img">
+            </a>
 
             <!-- Busca-->
              <form action="../actions/buscar.php" class="buscar-perfis" method="GET">

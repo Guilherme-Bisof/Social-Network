@@ -11,12 +11,12 @@
     $user_id = $_SESSION['user_id'];
     
     // Buscar ados do usuário no banco
-    $sql = "SELECT usuario, biografia FROM usuarios WHERE  id = $user_id";
+    $sql = "SELECT nome, biografia FROM usuarios WHERE  id = $user_id";
     $result = $conexao->query($sql);
 
     if ($result->num_rows > 0){
         $row = $result->fetch_assoc();
-        $usuario_atual = htmlspecialchars($row['usuario']);
+        $usuario_atual = htmlspecialchars($row['nome']);
         $biografia_atual = htmlspecialchars($row['biografia']);
     } else {
         $usuario_atual = "Usuário não encontrado.";

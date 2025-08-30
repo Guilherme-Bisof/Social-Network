@@ -73,7 +73,7 @@
 <body>
     <header>
         <section class="Nav">
-            <h1>ConnectYUU</h1>
+            <h1>ConnectU</h1>
             <nav>
                 <a href="inicio.php" class="nav-link">Início</a>
                 <a href="perfil.php" class="nav-link">Perfil</a>
