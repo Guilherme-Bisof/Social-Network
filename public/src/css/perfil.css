@@ -341,6 +341,203 @@ header {
     transform: translateY(-5px);
 }
 
+
+/* ========== Grupos ========== */
+
+.grupos-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    height: fit-content;
+}
+
+
+/* Publicacoes */
+
+#publicacoes {
+    grid-column: 2;
+}
+
+.nova-publicacao {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.01);
+    margin-bottom: 20px;
+    padding: 16px;
+    border: 1px solid #e4e6eb;
+}
+
+/* Coluna Direita - Atividades, Amigos, Eventos e Sugestões */
+
+.feed-atividades {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 122, 138, 0.1);
+    border: 1px solid #e4e6eb;
+    padding: 16px;
+    height: fit-content;
+}
+
+/* ========= SEÇÃO DE PROJETOS ========= */
+
+.projetos-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    margin-top: 20px;
+}
+.projetos-section {
+    color: #012f35;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #027A8A;
+}
+
+.projeto-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.projeto-item:hover {
+    background: #f0fafb;
+    transform: translateX(5px);
+}
+
+.btn-novo-projeto {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #027A8A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-novo-projeto:hover {
+    background: #01626f;
+}
+
+/* ========= SEÇÃO DE EVENTOS ========= */
+.eventos-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.eventos-section h2 {
+    color: #012f35;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #027A8A;
+}
+
+.evento-item {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    border-left: 4px solid #027A8A;
+}
+
+.evento-titulo {
+    font-weight: 600;
+    color: #012f35;
+    margin-bottom: 5px;
+}
+
+.evento-horario {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.btn-ver-todos {
+    display: block;
+    text-align: center;
+    color: #027A8A;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* ========= SEÇÃO "PARA VOCÊ" ========= */
+.sugestoes-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.sugestoes-section h2 {
+    color: #012f35;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #027A8A;
+}
+
+.sugestao-item {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.sugestao-titulo {
+    font-weight: 600;
+    color: #012f35;
+    margin-bottom: 8px;
+}
+
+.sugestao-descricao {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.sugestao-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    background: #e6f7f9;
+    color: #027A8A;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* ========= AJUSTES DE ALINHAMENTO ========= */
+.activity-recente {
+    color: #012f35 !important;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #027A8A;
+}
+
+/* Ajuste para a publicação ocupar a coluna central */
+.publicacao {
+    width: 100%;
+    margin-left: 0;
+}
+
 /* ========== BOTÃO AMIGOS ========== */
 
 .btn-amigo {
@@ -854,6 +1051,20 @@ button:active:not(:disabled) {
 }
 
 @media (max-width: 1024px) {
+    
+    main {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .grupos-section,.feed-atividades{
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #publicacoes{
+        grid-column: 1;
+    }
     .main-container {
         gap: 30px;
         grid-template-columns: 1fr;
@@ -871,6 +1082,16 @@ button:active:not(:disabled) {
     nav {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .Nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .busca-perfis{
+        width: 100%;
     }
 
     .menu {

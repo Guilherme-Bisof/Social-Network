@@ -11,41 +11,33 @@
     }
     $logado = $_SESSION['email'];
 
-    // Obter dados do usuário logado
-    $sql_usuario = "SELECT nome, foto_perfil FROM usuarios WHERE email = ?";
-    $stmt = $conexao->prepare($sql_usuario);
-    $stmt->bind_param('s', $logado);
-    $stmt->execute();
-    $result_usuario = $stmt->get_result();
-    $usuario_logado = $result_usuario->fetch_assoc();
-
-
-    $nome_usuario = $usuario_logado['nome'];
-    $foto_perfil = $usuario_logado['foto_perfil'];
-
-    require_once('../../database/config.php');
-
-    $sql = "SELECT  p.*, u.nome, u.foto_perfil FROM publicacoes p JOIN usuarios u ON p.usuario_id = u.id ORDER BY p.data_criacao DESC";
-    $result = $conexao->query($sql);
-
-    // Verifica se Tem publicacoes
-    if ($result->num_rows > 0){
-        $publicacoes = [];
-        while($row = $result->fetch_assoc()) {
-            $publicacoes[] = $row;
-        }
-    } else {
-        $publicacoes = [];
-    }
-
-    // Obter ID do usuário logado
-    $sql_user_id = "SELECT id FROM usuarios WHERE email =?";
+    // Obter ID do usuário logado primeiro
+    $sql_user_id = "SELECT id, nome, foto_perfil FROM usuarios WHERE email =?";
     $stmt_user = $conexao->prepare($sql_user_id);
     $stmt_user->bind_param('s', $logado);
     $stmt_user->execute();
     $result_user = $stmt_user->get_result();
     $user_data = $result_user->fetch_assoc();
+
     $user_id = $user_data['id'];
+    $nome_usuario = $user_data['nome'];
+    $foto_perfil = $user_data['foto_perfil'];
+
+    // Consultar publicações
+    $sql = "SELECT  p.*, u.nome, u.foto_perfil, 
+            (SELECT COUNT(*) FROM curtidas WHERE publicacao_id = p.id) as curtidas_count, 
+            (SELECT COUNT(*) FROM comentarios WHERE publicacao_id = p.id) as comentarios_count, 
+            EXISTS(SELECT 1 FROM curtidas WHERE publicacao_id = p.id AND usuario_id = ?) as usuario_curtiu 
+            FROM publicacoes p 
+            JOIN usuarios u ON p.usuario_id = u.id 
+            ORDER BY p.data_criacao DESC";
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $publicacoes = $result->fetch_all(MYSQLI_ASSOC);
 
     // Consultar Atividades
     $sql_atividades =  "SELECT a.*, u.nome, u.foto_perfil FROM atividades a JOIN usuarios u ON a.usuario_id = u.id WHERE a.usuario_id IN (SELECT CASE WHEN usuario_1 = ? THEN usuario_2 ELSE usuario_1 END AS amigos FROM amizades WHERE (usuario_1 =? OR usuario_2 =?) AND status = 'aceito') ORDER BY a.data DESC LIMIT 10";
@@ -92,6 +84,7 @@
 
     <!-- JAVASCRIPT -->
      <script src="../src/js/inicio.js"></script>
+     <script src="../src/js/interacoes.js"></script>
 
     <title>Página de Inicio | ConnectU</title>
 
@@ -172,7 +165,7 @@
                 <!-- As publicacoes sao exibidas aqui -->
                  <?php if (!empty($publicacoes)): ?>
                     <?php foreach ($publicacoes as $publicacao): ?>
-                        <div class="publicacao">
+                        <div class="publicacao" data-id="<?= $publicacao['id'] ?>">
                             <div class="publicacao-header">
                                 <?php if(!empty($publicacao['foto_perfil'])): ?>
                                     <img src="<?= htmlspecialchars($publicacao['foto_perfil']) ?>" class="avatar" alt="Perfil">
@@ -198,14 +191,40 @@
                                  <?php endif; ?>
                             </div>
 
+                            <div class="publicacao-stats">
+                                <span class="curtidas-count"><?= $publicacao['curtidas_count'] ?> curtidas</span>
+                                <span class="comentarios-count toggle-comentarios" data-publicacao-id="<?= $publicacao['id'] ?>">
+                                    <?= $publicacao['comentarios_count'] ?> comentários
+                                </span>
+                            </div>
+
                             <div class="publicacao-acoes">
-                                <div class="acao-btn">
-                                    <i class="far fa-thumbs-up"></i>
-                                    <span>Curtir</span>
-                                </div>
-                                <div class="acao-btn">
+                                <button class="acao-btn curtir-btn <?= $publicacao['usuario_curtiu'] ? 'curtido' : '' ?>" 
+                                        data-publicacao-id="<?= $publicacao['id'] ?>">
+                                    <i class="<?= $publicacao['usuario_curtiu'] ? 'fas' : 'far' ?> fa-thumbs-up"></i>
+                                    <span><?= $publicacao['usuario_curtiu'] ? 'Curtido' : 'Curtir' ?></span>
+                                </button>
+                                <button class="acao-btn comentar-btn" data-publicacao-id="<?= $publicacao['id'] ?>">
                                     <i class="far fa-comment-alt"></i>
                                     <span>Comentar</span>
+                                </button>
+                            </div>
+
+                            <!-- Área de comentários (inicialmente oculta) -->
+                            <div class="comentarios-container" id="comentarios-<?= $publicacao['id'] ?>">
+                                <form class="form-comentario" data-publicacao-id="<?= $publicacao['id'] ?>">
+                                    <div class="comentario-input">
+                                        <?php if(!empty($foto_perfil)): ?>
+                                            <img src="<?= htmlspecialchars($foto_perfil) ?>" class="avatar pequeno" alt="Seu Perfil">
+                                        <?php else: ?>
+                                            <div class="avatar-inicial pequeno"><?= strtoupper(substr($nome_usuario, 0, 1)) ?></div>
+                                        <?php endif; ?>
+                                        <input type="text" name="comentario" placeholder="Escreva um comentário..." required>
+                                        <button type="submit">Publicar</button>
+                                    </div>
+                                </form>
+                                <div class="lista-comentarios">
+                                    <!-- Comentarios serão carregados aqui via AJAX -->
                                 </div>
                             </div>
 
@@ -265,7 +284,6 @@
                     <p>Nenhum amigo online no momento.</p>
                 <?php endif; ?>
             </div>
-         </aside>
     </main>
 </body>
 </html>

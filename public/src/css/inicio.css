@@ -616,3 +616,445 @@ body {
 @media (max-width: 480px) {
     
 }
+
+/* Estilos para a área de comentários */
+
+.comentario-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.comentario-input .avatar.pequeno,
+.comentario-input .avatar-inicial.pequeno {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.comentario-input input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #dddfe2;
+    border-radius: 20px;
+    background-color: #f0f2f5;
+    outline: none;
+    font-size: 14px;
+}
+
+.comentario-input input:focus {
+    background-color: #fff;
+    border-color: #1877f2;
+}
+
+.comentario-input button {
+    padding: 8px 16px;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.comentario-input button:hover {
+    background-color: #166fe5;
+}
+
+.lista-comentarios {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.comentario {
+    margin-bottom: 12px;
+    padding: 12px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.comentario-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.comentario-header .avatar.pequeno {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.comentario-header strong {
+    font-size: 13px;
+    color: #050505;
+    font-weight: 600;
+}
+
+.comentario-header small {
+    font-size: 11px;
+    color: #65676b;
+}
+
+.comentario-conteudo p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #050505;
+}
+
+.sem-comentarios, .carregando, .erro {
+    text-align: center;
+    color: #65676b;
+    font-style: italic;
+    padding: 15px 0;
+}
+
+.erro {
+    color: #f02849;
+}
+
+/* Estilos para a contagem de comentários (clicável) */
+.comentarios-count {
+    cursor: pointer;
+    color: #65676b;
+    transition: color 0.2s;
+}
+
+.comentarios-count:hover {
+    color: #1877f2;
+    text-decoration: underline;
+}
+
+/* Melhorias para os botões de ação */
+.publicacao-acoes {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 10px 0;
+}
+
+.acao-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #65676b;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.acao-btn:hover {
+    background-color: #f0f2f5;
+    transform: translateY(-1px);
+}
+
+.curtir-btn.curtido {
+    color: #1877f2;
+}
+
+/* Estatísticas da publicação */
+.publicacao-stats {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #65676b;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.publicacao-stats span {
+    margin-right: 15px;
+}
+
+/* Correções para a área de comentários */
+.comentarios-container {
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+    border-radius: 0 0 8px 8px;
+    margin-top: 10px;
+}
+
+.comentario-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.comentario-input .avatar.pequeno,
+.comentario-input .avatar-inicial.pequeno {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.comentario-input input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #dddfe2;
+    border-radius: 20px;
+    background-color: #f0f2f5;
+    outline: none;
+    font-size: 14px;
+}
+
+.comentario-input input:focus {
+    background-color: #fff;
+    border-color: #1877f2;
+}
+
+.comentario-input button {
+    padding: 8px 16px;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.comentario-input button:hover {
+    background-color: #166fe5;
+}
+
+.lista-comentarios {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.comentario {
+    margin-bottom: 12px;
+    padding: 12px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.comentario-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.comentario-header .avatar.pequeno {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.comentario-header strong {
+    font-size: 13px;
+    color: #050505;
+    font-weight: 600;
+}
+
+.comentario-header small {
+    font-size: 11px;
+    color: #65676b;
+}
+
+.comentario-conteudo p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #050505;
+}
+
+.sem-comentarios, .carregando, .erro {
+    text-align: center;
+    color: #65676b;
+    font-style: italic;
+    padding: 15px 0;
+}
+
+.erro {
+    color: #f02849;
+}
+
+/* Estilos para a contagem de comentários (clicável) */
+.comentarios-count {
+    cursor: pointer;
+    color: #65676b;
+    transition: color 0.2s;
+}
+
+.comentarios-count:hover {
+    color: #1877f2;
+    text-decoration: underline;
+}
+
+/* Garantir que a área de comentários seja visível quando aberta */
+.comentarios-container[style*="display: block"] {
+    display: block !important;
+}
+
+/* Melhorar a visibilidade da área de comentários */
+.comentarios-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 15px;
+    border: 1px solid #e4e6eb;
+}
+
+/* ========= CORREÇÕES ESPECÍFICAS PARA COMENTÁRIOS ========= */
+.comentarios-container {
+    display: none;
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+    border-radius: 0 0 8px 8px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+.comentarios-container.mostrar {
+    display: block !important;
+}
+
+.comentario-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.comentario-input .avatar.pequeno,
+.comentario-input .avatar-inicial.pequeno {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.comentario-input input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #dddfe2;
+    border-radius: 20px;
+    background-color: #f0f2f5;
+    outline: none;
+    font-size: 14px;
+}
+
+.comentario-input input:focus {
+    background-color: #fff;
+    border-color: #1877f2;
+}
+
+.comentario-input button {
+    padding: 8px 16px;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.comentario-input button:hover {
+    background-color: #166fe5;
+}
+
+.lista-comentarios {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.comentario {
+    margin-bottom: 12px;
+    padding: 12px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.comentario-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.comentario-header .avatar.pequeno {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.comentario-header strong {
+    font-size: 13px;
+    color: #050505;
+    font-weight: 600;
+}
+
+.comentario-header small {
+    font-size: 11px;
+    color: #65676b;
+}
+
+.comentario-conteudo p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #050505;
+}
+
+.sem-comentarios, .carregando, .erro {
+    text-align: center;
+    color: #65676b;
+    font-style: italic;
+    padding: 15px 0;
+}
+
+.erro {
+    color: #f02849;
+}
+
+/* Estilos para a contagem de comentários (clicável) */
+.comentarios-count {
+    cursor: pointer;
+    color: #65676b;
+    transition: color 0.2s;
+}
+
+.comentarios-count:hover {
+    color: #1877f2;
+    text-decoration: underline;
+}
+
+/* Garantir que a publicação não tenha overflow hidden */
+.publicacao {
+    overflow: visible !important;
+    position: relative;
+}
+
+/* Melhorar a visibilidade dos botões */
+.acao-btn {
+    z-index: 1;
+    position: relative;
+}
+
+/* Forçar a exibição quando a classe mostrar estiver presente */
+.comentarios-container.mostrar {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
